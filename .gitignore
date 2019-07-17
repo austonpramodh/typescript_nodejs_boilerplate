@@ -65,4 +65,5 @@ typings/
 # blobStorage.js
 
 # build directory
-build/
+build
+dist

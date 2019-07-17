@@ -4,37 +4,34 @@
   "description": "",
   "main": "dist/server.js",
   "scripts": {
+    "start": "node dist",
     "build": "tsc",
     "test": "",
-    "start": "npm run serve",
-    "serve": "node build/app.js",
-    "watch-node": "nodemon build/app.js",
-    "watch-ts": "tsc -w",
-    "dev": "concurrently --kill-others \"npm run watch-ts\" \"npm run watch-node\" ",
-    "tsnode": "ts-node src/app.ts",
-    "pre-commit": "yarn tslint:fix && yarn prettier",
-    "prettier": "prettier --write \"{,!(node_modules|dist|build|coverage)/**/}*.{js,jsx,ts,tsx,json}\"",
-    "tslint": "tslint --project tsconfig.json",
-    "tslint:fix": "tslint --project tsconfig.json --fix"
+    "watch:node": "nodemon",
+    "watch:ts": "tsc --watch",
+    "dev": "concurrently --kill-others \"npm run watch:ts\" \"npm run watch:node\" ",
+    "pre-commit": "tsc --noEmit && eslint src --ext ts --ext js --quiet --fix"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
-    "@types/node": "^11.13.7",
-    "concurrently": "^4.1.0",
-    "husky": "^1.3.1",
-    "nodemon": "^1.18.11",
-    "prettier": "^1.17.0",
-    "ts-node": "^8.1.0",
-    "tslint": "^5.16.0",
-    "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.4.5",
-    "yarn": "^1.15.2"
+    "@types/node": "^12.6.2",
+    "@typescript-eslint/eslint-plugin": "^1.11.0",
+    "@typescript-eslint/parser": "^1.11.0",
+    "concurrently": "^4.1.1",
+    "eslint": "^6.0.1",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "husky": "^3.0.0",
+    "nodemon": "^1.19.1",
+    "prettier": "^1.18.2",
+    "typescript": "^3.5.3"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn pre-commit"
+      "pre-commit": "npm run pre-commit"
     }
   }
 }
