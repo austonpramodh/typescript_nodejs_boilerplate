@@ -1,8 +1,8 @@
-const a: string = "hello";
+const a = "hello";
 
-const main = (str: string) => {
-  // tslint:disable-next-line: no-console
-  console.log(str);
+const main = (str: string): void => {
+    // tslint:disable-next-line: no-console
+    console.log(str);
 };
 
 main(a);
