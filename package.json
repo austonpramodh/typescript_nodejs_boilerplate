@@ -1,22 +1,24 @@
 {
   "name": "typescript-boilerplate",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
-  "main": "dist/server.js",
+  "main": "dist/index.js",
   "scripts": {
     "start": "node dist",
     "build": "tsc",
-    "test": "",
-    "watch:node": "nodemon",
+    "dev": "concurrently --kill-others \"npm run watch:ts\" \"npm run watch:node\"",
+    "lint": "tsc --noEmit && eslint src --ext ts --ext js --quiet --fix",
     "watch:ts": "tsc --watch",
-    "dev": "concurrently --kill-others \"npm run watch:ts\" \"npm run watch:node\" ",
-    "pre-commit": "tsc --noEmit && eslint src --ext ts --ext js --quiet --fix"
+    "watch:node": "nodemon"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "dotenv": "^8.1.0",
+    "envalid": "^5.0.0"
+  },
   "devDependencies": {
-    "@types/node": "^12.6.2",
+    "@types/node": "^12.7.2",
     "@typescript-eslint/eslint-plugin": "^1.11.0",
     "@typescript-eslint/parser": "^1.11.0",
     "concurrently": "^4.1.1",
@@ -25,13 +27,20 @@
     "eslint-plugin-import": "^2.18.0",
     "eslint-plugin-prettier": "^3.1.0",
     "husky": "^3.0.0",
+    "lint-staged": "^9.2.1",
     "nodemon": "^1.19.1",
     "prettier": "^1.18.2",
     "typescript": "^3.5.3"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run pre-commit"
+      "pre-commit": "tsc --noEmit && lint-staged"
     }
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }
