@@ -4,37 +4,48 @@
     "description": "",
     "main": "dist/index.js",
     "scripts": {
-        "start": "node dist",
+        "prestart": "npm run build",
+        "start": "cross-env NODE_ENV=production node dist",
         "build": "tsc",
-        "dev": "concurrently --kill-others \"npm run watch:ts\" \"npm run watch:node\"",
+        "dev": "cross-env NODE_ENV=development concurrently --kill-others \"npm run watch:ts\" \"npm run watch:node\"",
+        "test": "cross-env NODE_ENV=test jest",
         "lint": "tsc --noEmit && eslint src --ext ts --ext js --quiet --fix",
-        "watch:ts": "tsc --watch",
+        "watch:ts": "tsc --incremental --watch",
         "watch:node": "nodemon",
-        "test": "jest"
+        "debug": "cross-env NODE_ENV=development node --inspect dist"
     },
-    "author": "",
+    "author": "Auston Pramodh Barboza <austonpramodh@gmail.com>",
+    "repository": {
+        "url": "https://github.com/austonpramodh/typescript_nodejs_boilerplate",
+        "type": "git"
+    },
+    "bugs": {
+        "email": "austonpramodh@gmail.com",
+        "url": "https://github.com/austonpramodh/expenseev-backend/issues"
+    },
     "license": "ISC",
     "dependencies": {
-        "dotenv": "^8.1.0",
-        "envalid": "^5.0.0"
+        "cross-env": "^7.0.2",
+        "envalid": "^6.0.1"
     },
     "devDependencies": {
-        "@types/jest": "^24.0.18",
-        "@types/node": "^12.7.4",
-        "@typescript-eslint/eslint-plugin": "^2.1.0",
-        "@typescript-eslint/parser": "^2.1.0",
-        "concurrently": "^4.1.2",
-        "eslint": "^6.3.0",
-        "eslint-config-prettier": "^6.2.0",
-        "eslint-plugin-import": "^2.18.2",
-        "eslint-plugin-prettier": "^3.1.0",
-        "husky": "^3.0.5",
-        "jest": "^24.9.0",
-        "lint-staged": "^9.2.1",
-        "nodemon": "^1.19.2",
-        "prettier": "^1.18.2",
-        "ts-jest": "^24.0.2",
-        "typescript": "^3.6.2"
+        "@types/jest": "^26.0.0",
+        "@types/node": "^14.0.13",
+        "@typescript-eslint/eslint-plugin": "^3.3.0",
+        "@typescript-eslint/parser": "^3.3.0",
+        "concurrently": "^5.2.0",
+        "dotenv": "^8.2.0",
+        "eslint": "^7.2.0",
+        "eslint-config-prettier": "^6.11.0",
+        "eslint-plugin-import": "^2.20.2",
+        "eslint-plugin-prettier": "^3.1.3",
+        "husky": "^4.2.5",
+        "jest": "^26.0.1",
+        "lint-staged": "^10.1.7",
+        "nodemon": "^2.0.3",
+        "prettier": "^2.0.5",
+        "ts-jest": "^26.1.0",
+        "typescript": "^3.8.3"
     },
     "husky": {
         "hooks": {
@@ -46,5 +57,8 @@
             "eslint --fix",
             "git add"
         ]
+    },
+    "engines": {
+        "node": ">12.0.0"
     }
 }

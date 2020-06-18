@@ -1,7 +1,15 @@
 {
-    "extends": ["plugin:@typescript-eslint/recommended", "prettier/@typescript-eslint", "plugin:prettier/recommended"],
+    "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "prettier/@typescript-eslint",
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:import/typescript",
+        "plugin:prettier/recommended"
+    ],
     "env": {
         "node": true,
+        "jest": true,
         "es6": true
     },
     "parser": "@typescript-eslint/parser",
@@ -10,8 +18,47 @@
         "ecmaVersion": 2018
     },
     "rules": {
+        "padding-line-between-statements": [
+            "error",
+            {
+                "blankLine": "always",
+                "prev": [
+                    "const",
+                    "let",
+                    "var"
+                ],
+                "next": "*"
+            },
+            {
+                "blankLine": "any",
+                "prev": [
+                    "const",
+                    "let",
+                    "var"
+                ],
+                "next": [
+                    "const",
+                    "let",
+                    "var"
+                ]
+            },
+            {
+                "blankLine": "always",
+                "prev": "*",
+                "next": [
+                    "return",
+                    "export"
+                ]
+            }
+        ],
         "arrow-parens": "error",
         "no-var": "error",
+        "import/order": [
+            "error",
+            {
+                "newlines-between": "always"
+            }
+        ],
         "prefer-const": "error",
         "prefer-rest-params": "error",
         "prefer-spread": "error",
@@ -38,7 +85,12 @@
         "@typescript-eslint/no-non-null-assertion": "error",
         "@typescript-eslint/no-parameter-properties": "error",
         "no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars": "error",
+        "@typescript-eslint/no-unused-vars": [
+            "error",
+            {
+                "argsIgnorePattern": "^_"
+            }
+        ],
         "no-use-before-define": "off",
         "@typescript-eslint/no-use-before-define": "error",
         "@typescript-eslint/no-var-requires": "error",

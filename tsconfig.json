@@ -6,14 +6,15 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "typeRoots": ["node_modules/@types"]
+    "strict": true,
+    "allowJs": false
   },
   "include": [
     "src/**/*.ts"
   ],
   "exclude": [
     "node_modules",
-    "src/__tests__",
-    "src/**/*.test.ts"
+    "src/__tests__/**/*",
+    "**/*.test.ts"
   ]
 }

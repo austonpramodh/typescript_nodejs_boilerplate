@@ -1,5 +1,4 @@
-import "dotenv/config";
-import validateEnv from "./utils/validateEnv";
-validateEnv(); //validate Environment variables
+import "./utils/configENV";
+import "./utils/validateEnv";
 
-console.log("hello Boilerplate");
+console.log(`hello Boilerplate\n ENV PORT: ${process.env.PORT}`);
